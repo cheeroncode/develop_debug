@@ -122,9 +122,9 @@ macro_rules! develop_debug {
     };
 
     (error $($msg:expr),*) => {
-        eprintln!("💥  error.");
+        println!("💥  error.");
         $(
-            eprintln!("💥  {}",$msg);
+            println!("💥  {}",$msg);
         )*
         println!();
     };

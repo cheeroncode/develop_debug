@@ -11,7 +11,7 @@ Add this to your `Cargo.toml` :
 
 ``` toml
 [dependencies]
-develop_debug = { version = "0.1.0", features = ["debug"] }
+develop_debug = { version = "0.1.1", features = ["debug"] }
 ```
 
 Use the `develop_debug!` :
@@ -82,14 +82,14 @@ dd________!("{}","Use it just as you would with the `println!()` macro.");
 
 ``` toml
 [dependencies]
-develop_debug = { version = "0.1.0", features = ["debug"] }
+develop_debug = { version = "0.1.1", features = ["debug"] }
 ```
 
 🤓 Modify `Cargo.toml` when you are ready to release :
 
 ``` toml
 [dependencies]
-develop_debug = { version = "0.1.0" }
+develop_debug = { version = "0.1.1" }
 ```
 
 * There is no need to clear debugging methods from source code;
