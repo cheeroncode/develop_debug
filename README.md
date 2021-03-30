@@ -10,8 +10,9 @@
 Add this to your `Cargo.toml` :
 
 ``` toml
-[dependencies]
-develop_debug = { version = "0.1.1", features = ["debug"] }
+[dependencies.develop_debug]
+version = "0.1.2"
+features = ["debug"]
 ```
 
 Use the `develop_debug!` :
@@ -81,15 +82,17 @@ dd________!("{}","Use it just as you would with the `println!()` macro.");
 😬 Add this to your `Cargo.toml` when developing :
 
 ``` toml
-[dependencies]
-develop_debug = { version = "0.1.1", features = ["debug"] }
+[dependencies.develop_debug]
+version = "0.1.2"
+features = ["debug"]
 ```
 
 🤓 Modify `Cargo.toml` when you are ready to release :
 
 ``` toml
-[dependencies]
-develop_debug = { version = "0.1.1" }
+[dependencies.develop_debug]
+version = "0.1.2"
+features = [] # You can also comment out or delete this line.
 ```
 
 * There is no need to clear debugging methods from source code;
@@ -104,18 +107,19 @@ If you can provide a better translation, please contact me at [code@autodo.xyz](
 
 **I hope this simple library is of some help to you.**
 
+😌 😌 😌 😌 😌 😌  
+
 ## Some amazing mistakes are not mistakes
 
-After switching features, then execute `cargo` to report an error:
+After switching features or upgrading versions, then executing `cargo` may report an error:
 
 ``` sh
 cargo build
 ...
 error: failed to remove .../target/debug/deps/generates-...: No such file or directory (os error 2)
 # The solution
-# Switch features, and then
 # Clear old compiled content
-# Execute the required command
+# Execute the required command again
 cargo clean
 cargo build
 ```

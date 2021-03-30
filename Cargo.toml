@@ -1,6 +1,6 @@
 [package]
 name = "develop_debug"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["cheeroncode <code@autodo.xyz>"]
 edition = "2018"
 
@@ -9,6 +9,7 @@ description = "Print debugging information at development time"
 keywords = ["debug", "print"]
 categories = ["development-tools","accessibility"]
 homepage = "https://autodo.xyz"
+repository = "https://github.com/cheeroncode/develop_debug"
 readme = "README.md"
 license = "MPL-2.0"
 
