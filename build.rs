@@ -10,6 +10,10 @@ fn main() {
         let enable = fs::copy("./src/mode/debug_mode.rs", "./src/copy_mode.rs");
         if let Err(err) = enable {
             println!("cargo:warning=Failed to copy file 'debug_mode.rs'. {}", err);
+            if let std::io::ErrorKind::PermissionDenied = err.kind() {
+                // docs.rs ignore.
+                return;
+            }
         }
     } else {
         println!("cargo:rustc-env=develop_debug=false");

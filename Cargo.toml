@@ -1,6 +1,6 @@
 [package]
 name = "develop_debug"
-version = "0.2.3"
+version = "0.2.4"
 authors = ["cheeroncode <code@autodo.xyz>"]
 edition = "2018"
 
