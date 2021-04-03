@@ -23,9 +23,9 @@ Use the `develop_debug!` :
 Output in debug mode :
 
 ``` output
-🍀  example
+   example
 🍀  balabala...
-✨  do something...
+🦀  do something...
 🔹  ‹   x   › = ‹dear X›
 🔹  ‹  say  › = ‹hello world!›
 🔶  array.iter()

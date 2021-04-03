@@ -1,3 +1,5 @@
 /target
 Cargo.lock
 /src/copy_mode.rs
+/scr/copy_mode.rs
+README.md

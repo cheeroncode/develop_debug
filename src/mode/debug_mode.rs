@@ -13,7 +13,7 @@ macro_rules! develop_debug {
 
     (step $($msg:expr),*) => {
         $(
-            println!("🌧  {}",$msg);
+            println!("🦀  {}",$msg);
         )*
     };
 
