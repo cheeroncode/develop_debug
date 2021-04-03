@@ -1,5 +1,10 @@
 use std::fs;
 fn main() {
+    // If in the `docs.rs` server sandbox, skip the build script.
+    if let Ok(_) = std::env::var("DOCS_RS") {        
+        return;
+    }
+
     println!("cargo:rerun-if-changed=Cargo.toml");
     println!("cargo:rerun-if-changed=T.README.md");
     println!("cargo:rerun-if-changed=/src/lib.rs");
@@ -10,10 +15,6 @@ fn main() {
         let enable = fs::copy("./src/mode/debug_mode.rs", "./src/copy_mode.rs");
         if let Err(err) = enable {
             println!("cargo:warning=Failed to copy file 'debug_mode.rs'. {}", err);
-            if let std::io::ErrorKind::PermissionDenied = err.kind() {
-                // docs.rs ignore.
-                return;
-            }
         }
     } else {
         println!("cargo:rustc-env=develop_debug=false");
