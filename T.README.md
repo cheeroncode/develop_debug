@@ -23,7 +23,7 @@ Use the `develop_debug!` :
 Output in debug mode :
 
 ``` output
-   example
+🍀  example
 🍀  balabala...
 🦀  do something...
 🔹  ‹   x   › = ‹dear X›

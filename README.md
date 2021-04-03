@@ -64,7 +64,7 @@ fn use_develop_debug_shortcut() {
 Output in debug mode :
 
 ``` output
-   example
+🍀  example
 🍀  balabala...
 🦀  do something...
 🔹  ‹   x   › = ‹dear X›
