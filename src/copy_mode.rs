@@ -6,29 +6,35 @@
 macro_rules! develop_debug {
 
     (title $($msg:expr),*) => {
+        println!();
         $(
             println!("🍀  {}",$msg);
-        )*
+        )*  
     };
 
+
     (step $($msg:expr),*) => {
+        println!();
         $(
             println!("🦀  {}",$msg);
         )*
     };
 
     (var $($arg:expr),*)=>{
+        println!();
         $(
             println!("🔹  ‹ {:^5} › = ‹{}›",stringify!($arg),$arg);
         )*
     };
 
     (iter $($list:expr),*)=>{
+        println!();
         $(
             println!("🔶  {}",stringify!($list));
             for item in $list{
                 println!("🔸  {:?}",item);
             }
+            println!();
         )*
     };
 

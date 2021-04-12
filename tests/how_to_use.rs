@@ -8,7 +8,7 @@ fn use_develop_debug() {
     let array = vec!["a", "b", "c"];
     let title2 = "balabala...";
 
-    develop_debug!(title "example",title2);
+    develop_debug!(title "example", title2);
     develop_debug!(step "do something...");
     develop_debug!(var x,say);
     develop_debug!(iter array.iter());

@@ -25,13 +25,17 @@ Output in debug mode :
 ``` output
 🍀  example
 🍀  balabala...
+
 🦀  do something...
+
 🔹  ‹   x   › = ‹dear X›
 🔹  ‹  say  › = ‹hello world!›
+
 🔶  array.iter()
 🔸  "a"
 🔸  "b"
 🔸  "c"
+
 🌱  done.
 🌱  genius!
 

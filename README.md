@@ -11,7 +11,7 @@ Add this to your `Cargo.toml` :
 
 ``` toml
 [dependencies]
-develop_debug = "0.2.5"
+develop_debug = "0.2.6"
 ```
 
 Use the `develop_debug!` :
@@ -27,7 +27,7 @@ fn use_develop_debug() {
     let array = vec!["a", "b", "c"];
     let title2 = "balabala...";
 
-    develop_debug!(title "example",title2);
+    develop_debug!(title "example", title2);
     develop_debug!(step "do something...");
     develop_debug!(var x,say);
     develop_debug!(iter array.iter());
@@ -66,13 +66,17 @@ Output in debug mode :
 ``` output
 🍀  example
 🍀  balabala...
+
 🦀  do something...
+
 🔹  ‹   x   › = ‹dear X›
 🔹  ‹  say  › = ‹hello world!›
+
 🔶  array.iter()
 🔸  "a"
 🔸  "b"
 🔸  "c"
+
 🌱  done.
 🌱  genius!
 
