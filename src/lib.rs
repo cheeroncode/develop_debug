@@ -12,22 +12,22 @@ mod copy_mode;
 pub use develop_debug as dd________;
 
 /**
-## Shortcut to `develop_debug!(done expr)`
+## Shortcut to `develop_debug!(done fmt,expr)`
 */
 #[macro_export]
 macro_rules! dd____done {
-    ($($msg:expr),*) => {
-        develop_debug!(done $($msg),*);
+    ($fmt:literal $(,)? $($msg:expr),*) => {
+        develop_debug!(done $fmt $($msg),*);
     };
 }
 
 /**
-## Shortcut to `develop_debug!(error expr)`
+## Shortcut to `develop_debug!(error fmt,expr)`
 */
 #[macro_export]
 macro_rules! dd___error {
-    ($($msg:expr),*) => {
-        develop_debug!(error $($msg),*);
+    ($fmt:literal $(,)? $($msg:expr),*) => {
+        develop_debug!(error $fmt $($msg),*);
     };
 }
 
@@ -36,8 +36,8 @@ macro_rules! dd___error {
 */
 #[macro_export]
 macro_rules! dd_____var {
-    ($($var:expr),*) => {
-        develop_debug!(var $($var),*);
+    ($($arg:expr),*) => {
+        develop_debug!(var $($arg),*);
     };
 }
 
@@ -46,8 +46,8 @@ macro_rules! dd_____var {
 */
 #[macro_export]
 macro_rules! dd____iter {
-    ($($list:expr),*) => {
-        develop_debug!(iter $($list),*);
+    ($($arg:expr),*) => {
+        develop_debug!(iter $($arg),*);
     };
 }
 
@@ -56,8 +56,8 @@ macro_rules! dd____iter {
 */
 #[macro_export]
 macro_rules! dd____step {
-    ($($msg:expr),*) => {
-        develop_debug!(step $($msg),*);
+    ($fmt:literal $(,)? $($msg:expr),*) => {
+        develop_debug!(step $fmt $($msg),*);
     };
 }
 
@@ -66,7 +66,7 @@ macro_rules! dd____step {
 */
 #[macro_export]
 macro_rules! dd___title {
-    ($($msg:expr),*) => {
-        develop_debug!(title $($msg),*);
+    ($fmt:literal $(,)? $($msg:expr),*) => {
+        develop_debug!(title $fmt $($msg),*);
     };
 }

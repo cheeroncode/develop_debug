@@ -5,54 +5,54 @@
 #[macro_export]
 macro_rules! develop_debug {
 
-    (title $($msg:expr),*) => {
+    (title $(,)? $fmt:literal $(,)? $($msg:expr),*) => {
         println!();
-        $(
-            println!("🍀  {}",$msg);
-        )*  
+        print!("🍀  ");
+        println!($fmt,$($msg),*);
     };
 
+    (step $(,)? $fmt:literal $(,)? $($msg:expr),*) => {
+        println!();
+        print!("🦀  ");
+        println!($fmt,$($msg),*);
+    };
 
-    (step $($msg:expr),*) => {
+    (var $(,)? $($arg:expr),*)=>{
         println!();
         $(
-            println!("🦀  {}",$msg);
+            let dd_var = &$arg;
+            let dd_var_name = stringify!($arg);
+            println!("🔹  ‹ {:<10} › = ‹{:?}›",dd_var_name,dd_var);
         )*
     };
 
-    (var $($arg:expr),*)=>{
+    (iter $(,)? $($arg:expr),*)=>{
         println!();
         $(
-            println!("🔹  ‹ {:^5} › = ‹{}›",stringify!($arg),$arg);
-        )*
-    };
-
-    (iter $($list:expr),*)=>{
-        println!();
-        $(
-            println!("🔶  {}",stringify!($list));
-            for item in $list{
+            let dd_var = $arg;
+            let dd_var_name = stringify!($arg);
+            println!("🔶  {}",dd_var_name);
+            for item in dd_var{
                 println!("🔸  {:?}",item);
             }
             println!();
         )*
     };
 
-    (done $($msg:expr),*) => {
-        println!("🌱  done.");
-        $(
-            println!("🌱  {}",$msg);
-        )*
+    (done $(,)? $fmt:literal $(,)? $($msg:expr),*) => {
+        println!();
+        print!("🌱  done. ");
+        println!($fmt,$($msg)*);        
         println!();
     };
 
-    (error $($msg:expr),*) => {
-        println!("💥  error.");
-        $(
-            println!("💥  {}",$msg);
-        )*
+    (error $(,)? $fmt:literal $(,)? $($msg:expr),*) => {
+        println!();
+        print!("💥  error. ");
+        println!($fmt,$($msg)*);
         println!();
     };
+
     ($($args:tt)*) => {
         print!("🐰  ");
         println!($($args)*);

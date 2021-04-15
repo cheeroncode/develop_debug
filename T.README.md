@@ -23,24 +23,28 @@ Use the `develop_debug!` :
 Output in debug mode :
 
 ``` output
-🍀  example
-🍀  balabala...
+🍀  example balabala...
 
-🦀  do something...
+🦀  do something...hello world!
 
-🔹  ‹   x   › = ‹dear X›
-🔹  ‹  say  › = ‹hello world!›
+🔹  ‹ x          › = ‹"dear X"›
+🔹  ‹ say        › = ‹"hello world!"›
 
 🔶  array.iter()
 🔸  "a"
 🔸  "b"
 🔸  "c"
 
-🌱  done.
-🌱  genius!
+🔶  array.iter()
+🔸  "a"
+🔸  "b"
+🔸  "c"
 
-💥  error.
-💥  dude, this road is blocked.
+
+🌱  done. genius dear X
+
+
+💥  error. dude, this road is blocked. dear X
 
 🐰  Use it just as you would with the `println!()` macro.
 ```
