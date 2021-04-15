@@ -31,7 +31,7 @@ fn use_develop_debug_shortcut() {
     dd___title!("example {}", title2);
     dd____step!("do something...{}", say);
     dd_____var!(x, say);
-    dd____iter!(array.iter(), array.iter());
+    dd____iter!(array.iter(), array);
     dd____done!("genius {}", x);
     dd___error!("dude, this road is blocked. {}", x);
     dd________!(

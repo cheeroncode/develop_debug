@@ -35,7 +35,7 @@ Output in debug mode :
 🔸  "b"
 🔸  "c"
 
-🔶  array.iter()
+🔶  array
 🔸  "a"
 🔸  "b"
 🔸  "c"

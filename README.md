@@ -11,7 +11,7 @@ Add this to your `Cargo.toml` :
 
 ``` toml
 [dependencies]
-develop_debug = "0.3.0"
+develop_debug = "0.3.1"
 ```
 
 Use the `develop_debug!` :
@@ -50,7 +50,7 @@ fn use_develop_debug_shortcut() {
     dd___title!("example {}", title2);
     dd____step!("do something...{}", say);
     dd_____var!(x, say);
-    dd____iter!(array.iter(), array.iter());
+    dd____iter!(array.iter(), array);
     dd____done!("genius {}", x);
     dd___error!("dude, this road is blocked. {}", x);
     dd________!(
@@ -68,15 +68,15 @@ Output in debug mode :
 
 🦀  do something...hello world!
 
-🔹  ‹   x   › = ‹"dear X"›
-🔹  ‹  say  › = ‹"hello world!"›
+🔹  ‹ x          › = ‹"dear X"›
+🔹  ‹ say        › = ‹"hello world!"›
 
 🔶  array.iter()
 🔸  "a"
 🔸  "b"
 🔸  "c"
 
-🔶  array.iter()
+🔶  array
 🔸  "a"
 🔸  "b"
 🔸  "c"
