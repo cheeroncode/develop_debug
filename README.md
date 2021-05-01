@@ -11,7 +11,7 @@ Add this to your `Cargo.toml` :
 
 ``` toml
 [dependencies]
-develop_debug = "0.3.1"
+develop_debug = "0.4.0"
 ```
 
 Use the `develop_debug!` :
@@ -27,6 +27,7 @@ fn use_develop_debug() {
     let array = vec!["a", "b", "c"];
     let title2 = "balabala...";
 
+    develop_debug!(output true);
     develop_debug!(title "example {}",title2);
     develop_debug!(step "do something...{}", say);
     develop_debug!(var x,say);
@@ -37,6 +38,7 @@ fn use_develop_debug() {
         "{}",
         "Use it just as you would with the `println!()` macro."
     );
+    develop_debug!(output false);
 }
 
 // Using the shortcut, print the same result as above.
@@ -47,6 +49,7 @@ fn use_develop_debug_shortcut() {
     let array = vec!["a", "b", "c"];
     let title2 = "balabala...";
 
+    dd____show!();
     dd___title!("example {}", title2);
     dd____step!("do something...{}", say);
     dd_____var!(x, say);
@@ -57,6 +60,7 @@ fn use_develop_debug_shortcut() {
         "{}",
         "Use it just as you would with the `println!()` macro."
     );
+    dd____hide!();
 }
 
 ```
