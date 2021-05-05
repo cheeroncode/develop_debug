@@ -152,6 +152,9 @@ macro_rules! dd____hide {
 */
 #[macro_export]
 macro_rules! dd____done {
+    () => {
+        develop_debug!(done "");
+    };
     ($fmt:literal $(,)? $($msg:expr),*) => {
         develop_debug!(done $fmt $($msg),*);
     };
@@ -162,6 +165,9 @@ macro_rules! dd____done {
 */
 #[macro_export]
 macro_rules! dd___error {
+    () => {
+        develop_debug!(error "");
+    };
     ($fmt:literal $(,)? $($msg:expr),*) => {
         develop_debug!(error $fmt $($msg),*);
     };
