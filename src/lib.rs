@@ -103,7 +103,7 @@ macro_rules! develop_debug {
         if enable_output() {
             println!();
             print!("🌱  done. ");
-            println!($fmt,$($msg)*);
+            println!($fmt,$($msg),*);
             println!();
         }
     };
@@ -112,7 +112,7 @@ macro_rules! develop_debug {
         if enable_output() {
             println!();
             print!("💥  error. ");
-            println!($fmt,$($msg)*);
+            println!($fmt,$($msg),*);
             println!();
         }
     };

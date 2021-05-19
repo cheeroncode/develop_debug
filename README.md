@@ -11,7 +11,7 @@ Add this to your `Cargo.toml` :
 
 ``` toml
 [dependencies]
-develop_debug = "0.4.0"
+develop_debug = "0.4.1"
 ```
 
 Use the `develop_debug!` :
