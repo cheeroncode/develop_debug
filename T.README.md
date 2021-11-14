@@ -22,7 +22,7 @@ Use the `develop_debug!` :
 
 Output in debug mode :
 
-``` output
+``` sh
 🍀  example balabala...
 
 🦀  do something...hello world!
@@ -47,6 +47,15 @@ Output in debug mode :
 💥  error. dude, this road is blocked. dear X
 
 🐰  Use it just as you would with the `println!()` macro.
+
+# output_range_control
+
+🦀  current method 1 ..
+
+🦀  current method 2 ..
+
+🦀  other method
+
 ```
 
 No output in `--release` mode.

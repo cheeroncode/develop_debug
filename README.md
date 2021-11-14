@@ -11,7 +11,7 @@ Add this to your `Cargo.toml` :
 
 ``` toml
 [dependencies]
-develop_debug = "0.4.1"
+develop_debug = "0.5.0"
 ```
 
 Use the `develop_debug!` :
@@ -27,7 +27,7 @@ fn use_develop_debug() {
     let array = vec!["a", "b", "c"];
     let title2 = "balabala...";
 
-    develop_debug!(output true);
+    develop_debug!(output method);
     develop_debug!(title "example {}",title2);
     develop_debug!(step "do something...{}", say);
     develop_debug!(var x,say);
@@ -38,7 +38,6 @@ fn use_develop_debug() {
         "{}",
         "Use it just as you would with the `println!()` macro."
     );
-    develop_debug!(output false);
 }
 
 // Using the shortcut, print the same result as above.
@@ -60,14 +59,27 @@ fn use_develop_debug_shortcut() {
         "{}",
         "Use it just as you would with the `println!()` macro."
     );
-    dd____hide!();
 }
 
+#[test]
+fn use_output_range_control() {    
+    dd____show!(); // Output only messages for the current method
+    dd____step!("current method 1 .."); // output
+    other(); // ignored
+    dd____show!(global); // Outputs all messages for all methods
+    dd____step!("current method 2 .."); // output
+    other(); // output
+    dd____hide!(global);
+}
+
+fn other() {
+    dd____step!("other method");
+}
 ```
 
 Output in debug mode :
 
-``` output
+``` sh
 🍀  example balabala...
 
 🦀  do something...hello world!
@@ -92,6 +104,15 @@ Output in debug mode :
 💥  error. dude, this road is blocked. dear X
 
 🐰  Use it just as you would with the `println!()` macro.
+
+# output_range_control
+
+🦀  current method 1 ..
+
+🦀  current method 2 ..
+
+🦀  other method
+
 ```
 
 No output in `--release` mode.

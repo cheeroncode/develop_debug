@@ -37,7 +37,7 @@ pub fn debug(output: bool) {
 /**
 ## Gets the global output state of the debug message.
 */
-pub fn enable_output() -> bool {
+pub fn enable_develop_debug_output() -> bool {
     DEVELOP_DEBUG_OUTPUT_STATE.with(|state| *state.borrow())
 }
 
@@ -48,17 +48,20 @@ pub fn enable_output() -> bool {
 #[cfg(debug_assertions)]
 #[macro_export]
 macro_rules! develop_debug {
+    (output method)=>{
+        fn enable_develop_debug_output() -> bool { true }
+    };
 
-    (output true)=>{
+    (output global true)=>{
         debug(true);
     };
 
-    (output false)=>{
+    (output global false)=>{
         debug(false);
     };
 
     (title $(,)? $fmt:literal $(,)? $($msg:expr),*) => {
-        if enable_output() {
+        if enable_develop_debug_output() {
             println!();
             print!("🍀  ");
             println!($fmt,$($msg),*);
@@ -66,7 +69,7 @@ macro_rules! develop_debug {
     };
 
     (step $(,)? $fmt:literal $(,)? $($msg:expr),*) => {
-        if enable_output() {
+        if enable_develop_debug_output() {
             println!();
             print!("🦀  ");
             println!($fmt,$($msg),*);
@@ -74,7 +77,7 @@ macro_rules! develop_debug {
     };
 
     (var $(,)? $($arg:expr),*)=>{
-        if enable_output() {
+        if enable_develop_debug_output() {
             println!();
             $(
                 let dd_var = &$arg;
@@ -85,7 +88,7 @@ macro_rules! develop_debug {
     };
 
     (iter $(,)? $($arg:expr),*)=>{
-        if enable_output() {
+        if enable_develop_debug_output() {
             println!();
             $(
                 let dd_var = $arg;
@@ -100,7 +103,7 @@ macro_rules! develop_debug {
     };
 
     (done $(,)? $fmt:literal $(,)? $($msg:expr),*) => {
-        if enable_output() {
+        if enable_develop_debug_output() {
             println!();
             print!("🌱  done. ");
             println!($fmt,$($msg),*);
@@ -109,7 +112,7 @@ macro_rules! develop_debug {
     };
 
     (error $(,)? $fmt:literal $(,)? $($msg:expr),*) => {
-        if enable_output() {
+        if enable_develop_debug_output() {
             println!();
             print!("💥  error. ");
             println!($fmt,$($msg),*);
@@ -118,7 +121,7 @@ macro_rules! develop_debug {
     };
 
     ($($args:tt)*) => {
-        if enable_output() {
+        if enable_develop_debug_output() {
             print!("🐰  ");
             println!($($args)*);
         }
@@ -128,12 +131,19 @@ macro_rules! develop_debug {
 pub use develop_debug as dd________;
 
 /**
-## Shortcut to `develop_debug!(output true)`
+## Shortcut to `develop_debug!()`
+```
+dd____show!(); //  develop_debug!(output method);
+dd____show!(global); // develop_debug!(output true);
+```
 */
 #[macro_export]
 macro_rules! dd____show {
     () => {
-        develop_debug!(output true);
+        develop_debug!(output method);
+    };
+    (global) => {
+        develop_debug!(output global true);
     };
 }
 
@@ -142,8 +152,8 @@ macro_rules! dd____show {
 */
 #[macro_export]
 macro_rules! dd____hide {
-    () => {
-        develop_debug!(output false);
+    (global) => {
+        develop_debug!(output global false);
     };
 }
 
