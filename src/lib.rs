@@ -63,7 +63,8 @@ macro_rules! develop_debug {
     (title $(,)? $fmt:literal $(,)? $($msg:expr),*) => {
         if enable_develop_debug_output() {
             println!();
-            print!("🍀  ");
+            print!("❲ {}:{} ❳",file!(),line!());
+            print!("  🍀  ");
             println!($fmt,$($msg),*);
         }
     };
@@ -71,33 +72,36 @@ macro_rules! develop_debug {
     (step $(,)? $fmt:literal $(,)? $($msg:expr),*) => {
         if enable_develop_debug_output() {
             println!();
-            print!("🦀  ");
+            print!("❲ {}:{} ❳",file!(),line!());
+            print!("  🦀  ");
             println!($fmt,$($msg),*);
         }
     };
 
-    (var $(,)? $($arg:expr),*)=>{
+    (vars $(,)? $($arg:expr),*)=>{
         if enable_develop_debug_output() {
             println!();
             $(
-                let dd_var = &$arg;
-                let dd_var_name = stringify!($arg);
-                println!("🔹  ‹ {:<10} › = ‹{:?}›",dd_var_name,dd_var);
-            )*
-        }
-    };
+                let prefix = format!("❲ {}:{} ❳  🔹  ‹ {:<10} › = ",file!(),line!(),stringify!($arg));
+                let columns = prefix.chars().count();
+                let spaces = String::from_iter(vec![' ';columns]);
+                let value = format!("{:#?}",&$arg);
+                let lines = value.lines().into_iter().map(|s| s).collect::<Vec<&str>>();
+                let lines = lines.as_slice();
 
-    (iter $(,)? $($arg:expr),*)=>{
-        if enable_develop_debug_output() {
-            println!();
-            $(
-                let dd_var = $arg;
-                let dd_var_name = stringify!($arg);
-                println!("🔶  {}",dd_var_name);
-                for item in dd_var{
-                    println!("🔸  {:?}",item);
+                if lines.len()==1{
+                    for s in lines{
+                        println!("{}{}",prefix,s);
+                    }
+                }else{
+                    if let [first,body @ ..,last] = lines{
+                        println!("{}{}",prefix,first);
+                        for s in body {
+                            println!("{} ›{}",spaces,s);
+                        }
+                        println!("{} {}",spaces,last);
+                    }
                 }
-                println!();
             )*
         }
     };
@@ -105,7 +109,8 @@ macro_rules! develop_debug {
     (done $(,)? $fmt:literal $(,)? $($msg:expr),*) => {
         if enable_develop_debug_output() {
             println!();
-            print!("🌱  done. ");
+            print!("❲ {}:{} ❳",file!(),line!());
+            print!("  🌱  done. ");
             println!($fmt,$($msg),*);
             println!();
         }
@@ -114,7 +119,8 @@ macro_rules! develop_debug {
     (error $(,)? $fmt:literal $(,)? $($msg:expr),*) => {
         if enable_develop_debug_output() {
             println!();
-            print!("💥  error. ");
+            print!("❲ {}:{} ❳",file!(),line!());
+            print!("  💥  error. ");
             println!($fmt,$($msg),*);
             println!();
         }
@@ -122,8 +128,11 @@ macro_rules! develop_debug {
 
     ($($args:tt)*) => {
         if enable_develop_debug_output() {
-            print!("🐰  ");
+            println!();
+            print!("❲ {}:{} ❳",file!(),line!());
+            print!("  🐰  ");
             println!($($args)*);
+            println!();
         }
     };
 }
@@ -133,6 +142,7 @@ pub use develop_debug as dd________;
 /**
 ## Shortcut to `develop_debug!()`
 ```
+# use develop_debug::*;
 dd____show!(); //  develop_debug!(output method);
 dd____show!(global); // develop_debug!(output true);
 ```
@@ -187,19 +197,9 @@ macro_rules! dd___error {
 ## Shortcut to `develop_debug!(var expr)`
 */
 #[macro_export]
-macro_rules! dd_____var {
+macro_rules! dd____vars {
     ($($arg:expr),*) => {
-        develop_debug!(var $($arg),*);
-    };
-}
-
-/**
-## Shortcut to `develop_debug!(iter expr)`
-*/
-#[macro_export]
-macro_rules! dd____iter {
-    ($($arg:expr),*) => {
-        develop_debug!(iter $($arg),*);
+        develop_debug!(vars $($arg),*);
     };
 }
 

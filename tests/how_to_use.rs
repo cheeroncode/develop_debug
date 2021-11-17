@@ -1,18 +1,20 @@
+use std::{collections::HashMap, iter::FromIterator};
+
 use develop_debug::*;
 
 // Standard usage
 #[test]
-fn use_develop_debug() {
+fn test_develop_debug() {
     let x = "dear X";
     let say = "hello world!";
-    let array = vec!["a", "b", "c"];
+    let vec = vec!["a", "b", "c"];
+    let map = HashMap::from([("a", (Some("a"), "a")), ("b", (Some("b"), "b"))]);
     let title2 = "balabala...";
 
     develop_debug!(output method);
     develop_debug!(title "example {}",title2);
     develop_debug!(step "do something...{}", say);
-    develop_debug!(var x,say);
-    develop_debug!(iter array.iter(),array);
+    develop_debug!(vars x,say,vec,map);
     develop_debug!(done "genius {}",x);
     develop_debug!(error "dude, this road is blocked. {}",x);
     develop_debug!(
@@ -23,17 +25,17 @@ fn use_develop_debug() {
 
 // Using the shortcut, print the same result as above.
 #[test]
-fn use_develop_debug_shortcut() {
+fn test_develop_debug_shortcut() {
     let x = "dear X";
     let say = "hello world!";
-    let array = vec!["a", "b", "c"];
+    let vec = vec!["a", "b", "c"];
+    let map = HashMap::from([("a", (Some("a"), "a")), ("b", (Some("b"), "b"))]);
     let title2 = "balabala...";
 
     dd____show!();
     dd___title!("example {}", title2);
     dd____step!("do something...{}", say);
-    dd_____var!(x, say);
-    dd____iter!(array.iter(), array);
+    dd____vars!(x, say, vec, map);
     dd____done!("genius {}", x);
     dd___error!("dude, this road is blocked. {}", x);
     dd________!(
@@ -43,7 +45,7 @@ fn use_develop_debug_shortcut() {
 }
 
 #[test]
-fn use_output_range_control() {    
+fn test_output_range_control() {
     dd____show!(); // Output only messages for the current method
     dd____step!("current method 1 .."); // output
     other(); // ignored

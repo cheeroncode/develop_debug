@@ -23,30 +23,39 @@ Use the `develop_debug!` :
 Output in debug mode :
 
 ``` sh
-🍀  example balabala...
+❲ tests/how_to_use.rs:36 ❳  🍀  example balabala...
 
-🦀  do something...hello world!
+❲ tests/how_to_use.rs:37 ❳  🦀  do something...hello world!
 
-🔹  ‹ x          › = ‹"dear X"›
-🔹  ‹ say        › = ‹"hello world!"›
+❲ tests/how_to_use.rs:38 ❳  🔹  ‹ x          › = "dear X"
+❲ tests/how_to_use.rs:38 ❳  🔹  ‹ say        › = "hello world!"
+❲ tests/how_to_use.rs:38 ❳  🔹  ‹ vec        › = [
+                                                 ›    "a",
+                                                 ›    "b",
+                                                 ›    "c",
+                                                 ]
+❲ tests/how_to_use.rs:38 ❳  🔹  ‹ map        › = {
+                                                 ›    "b": (
+                                                 ›        Some(
+                                                 ›            "b",
+                                                 ›        ),
+                                                 ›        "b",
+                                                 ›    ),
+                                                 ›    "a": (
+                                                 ›        Some(
+                                                 ›            "a",
+                                                 ›        ),
+                                                 ›        "a",
+                                                 ›    ),
+                                                 }
 
-🔶  array.iter()
-🔸  "a"
-🔸  "b"
-🔸  "c"
-
-🔶  array
-🔸  "a"
-🔸  "b"
-🔸  "c"
+❲ tests/how_to_use.rs:39 ❳  🌱  done. genius dear X
 
 
-🌱  done. genius dear X
+❲ tests/how_to_use.rs:40 ❳  💥  error. dude, this road is blocked. dear X
 
 
-💥  error. dude, this road is blocked. dear X
-
-🐰  Use it just as you would with the `println!()` macro.
+❲ tests/how_to_use.rs:41 ❳  🐰  Use it just as you would with the `println!()` macro.
 
 # output_range_control
 

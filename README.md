@@ -11,27 +11,29 @@ Add this to your `Cargo.toml` :
 
 ``` toml
 [dependencies]
-develop_debug = "0.5.0"
+develop_debug = "0.6.0"
 ```
 
 Use the `develop_debug!` :
 
 ``` rust
+use std::{collections::HashMap, iter::FromIterator};
+
 use develop_debug::*;
 
 // Standard usage
 #[test]
-fn use_develop_debug() {
+fn test_develop_debug() {
     let x = "dear X";
     let say = "hello world!";
-    let array = vec!["a", "b", "c"];
+    let vec = vec!["a", "b", "c"];
+    let map = HashMap::from([("a", (Some("a"), "a")), ("b", (Some("b"), "b"))]);
     let title2 = "balabala...";
 
     develop_debug!(output method);
     develop_debug!(title "example {}",title2);
     develop_debug!(step "do something...{}", say);
-    develop_debug!(var x,say);
-    develop_debug!(iter array.iter(),array);
+    develop_debug!(vars x,say,vec,map);
     develop_debug!(done "genius {}",x);
     develop_debug!(error "dude, this road is blocked. {}",x);
     develop_debug!(
@@ -42,17 +44,17 @@ fn use_develop_debug() {
 
 // Using the shortcut, print the same result as above.
 #[test]
-fn use_develop_debug_shortcut() {
+fn test_develop_debug_shortcut() {
     let x = "dear X";
     let say = "hello world!";
-    let array = vec!["a", "b", "c"];
+    let vec = vec!["a", "b", "c"];
+    let map = HashMap::from([("a", (Some("a"), "a")), ("b", (Some("b"), "b"))]);
     let title2 = "balabala...";
 
     dd____show!();
     dd___title!("example {}", title2);
     dd____step!("do something...{}", say);
-    dd_____var!(x, say);
-    dd____iter!(array.iter(), array);
+    dd____vars!(x, say, vec, map);
     dd____done!("genius {}", x);
     dd___error!("dude, this road is blocked. {}", x);
     dd________!(
@@ -62,7 +64,7 @@ fn use_develop_debug_shortcut() {
 }
 
 #[test]
-fn use_output_range_control() {    
+fn test_output_range_control() {
     dd____show!(); // Output only messages for the current method
     dd____step!("current method 1 .."); // output
     other(); // ignored
@@ -75,35 +77,45 @@ fn use_output_range_control() {
 fn other() {
     dd____step!("other method");
 }
+
 ```
 
 Output in debug mode :
 
 ``` sh
-🍀  example balabala...
+❲ tests/how_to_use.rs:36 ❳  🍀  example balabala...
 
-🦀  do something...hello world!
+❲ tests/how_to_use.rs:37 ❳  🦀  do something...hello world!
 
-🔹  ‹ x          › = ‹"dear X"›
-🔹  ‹ say        › = ‹"hello world!"›
+❲ tests/how_to_use.rs:38 ❳  🔹  ‹ x          › = "dear X"
+❲ tests/how_to_use.rs:38 ❳  🔹  ‹ say        › = "hello world!"
+❲ tests/how_to_use.rs:38 ❳  🔹  ‹ vec        › = [
+                                                 ›    "a",
+                                                 ›    "b",
+                                                 ›    "c",
+                                                 ]
+❲ tests/how_to_use.rs:38 ❳  🔹  ‹ map        › = {
+                                                 ›    "b": (
+                                                 ›        Some(
+                                                 ›            "b",
+                                                 ›        ),
+                                                 ›        "b",
+                                                 ›    ),
+                                                 ›    "a": (
+                                                 ›        Some(
+                                                 ›            "a",
+                                                 ›        ),
+                                                 ›        "a",
+                                                 ›    ),
+                                                 }
 
-🔶  array.iter()
-🔸  "a"
-🔸  "b"
-🔸  "c"
-
-🔶  array
-🔸  "a"
-🔸  "b"
-🔸  "c"
+❲ tests/how_to_use.rs:39 ❳  🌱  done. genius dear X
 
 
-🌱  done. genius dear X
+❲ tests/how_to_use.rs:40 ❳  💥  error. dude, this road is blocked. dear X
 
 
-💥  error. dude, this road is blocked. dear X
-
-🐰  Use it just as you would with the `println!()` macro.
+❲ tests/how_to_use.rs:41 ❳  🐰  Use it just as you would with the `println!()` macro.
 
 # output_range_control
 
