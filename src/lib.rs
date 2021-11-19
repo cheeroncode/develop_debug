@@ -83,8 +83,7 @@ macro_rules! develop_debug {
             println!();
             $(
                 let prefix = format!("❲ {}:{} ❳  🔹  ‹ {:<10} › = ",file!(),line!(),stringify!($arg));
-                let columns = prefix.chars().count();
-                let spaces = String::from_iter(vec![' ';columns]);
+                let spaces = " ".repeat(prefix.chars().count());
                 let value = format!("{:#?}",&$arg);
                 let lines = value.lines().into_iter().map(|s| s).collect::<Vec<&str>>();
                 let lines = lines.as_slice();

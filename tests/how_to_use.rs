@@ -1,4 +1,4 @@
-use std::{collections::HashMap, iter::FromIterator};
+use std::collections::HashMap;
 
 use develop_debug::*;
 
@@ -56,5 +56,5 @@ fn test_output_range_control() {
 }
 
 fn other() {
-    dd____step!("other method");
+    dd____step!("other method");     
 }

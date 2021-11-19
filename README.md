@@ -11,13 +11,13 @@ Add this to your `Cargo.toml` :
 
 ``` toml
 [dependencies]
-develop_debug = "0.6.0"
+develop_debug = "0.6.1"
 ```
 
 Use the `develop_debug!` :
 
 ``` rust
-use std::{collections::HashMap, iter::FromIterator};
+use std::collections::HashMap;
 
 use develop_debug::*;
 
@@ -75,7 +75,7 @@ fn test_output_range_control() {
 }
 
 fn other() {
-    dd____step!("other method");
+    dd____step!("other method");     
 }
 
 ```
